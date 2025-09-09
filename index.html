@@ -87,8 +87,8 @@
         } else {
           // Otherwise, search using stored engine (default: Google)
           const engine = localStorage.getItem('searchEngine') || 'google';
-          if (engine === 'bing') {
-            url = 'https://www.bing.com/search?q=' + encodeURIComponent(input);
+          //if (engine === 'bing') {
+          //  url = 'https://www.bing.com/search?q=' + encodeURIComponent(input);
           } else {
             url = 'https://www.google.com/search?q=' + encodeURIComponent(input);
           }

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Monky</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: #020930;
+        font-family: 'Lato', Sans-Serif;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+      .text {
+        font-size: 60px;
+        color: white;
+        margin-bottom: 20px;
+      }
+      .input-container {
+        background-color: white;
+        color: #020930;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .input-container input {
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        padding: 0.5rem;
+        width: 250px;
+      }
+      .button {
+        background-color: #101840;
+        color: #f0f0f0;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .button:hover {
+        background-color: #1a2758;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text">Monky</div>
+      <div class="input-container">
+        <input id="url" type="text" placeholder="Insert URL here!">
+      </div>
+      <button class="button" onclick="redirect()">Go</button>
+    </div>
+</div>
+    <!--Coming Soon-Browser Changes  
+    <div class="container">
+    <input text="placeholder">Google>
+      <button class="button" onclick="">></button>
+     -->
+    <script>
+     // function redrict() {
+      //  const input=getElementById('url')
+      //  let url;
+      function redirect() {
+        const input = document.getElementById('url').value.trim();
+        let url;
+
+        if (isValidURL(input)) {
+          // If it's a valid URL, ensure it starts with http/https
+          url = input.startsWith('http') ? input : 'https://' + input;
+        } else {
+          // Otherwise, search using stored engine (default: Google)
+          const engine = localStorage.getItem('searchEngine') || 'google';
+          if (engine === 'bing') {
+            url = 'https://www.bing.com/search?q=' + encodeURIComponent(input);
+          } else {
+            url = 'https://www.google.com/search?q=' + encodeURIComponent(input);
+          }
+        }
+
+        // Perform the redirect
+        window.location.href = url;
+      }
+
+      // Helper function to validate URLs
+      function isValidURL(str) {
+        try {
+          new URL(str.startsWith('http') ? str : 'https://' + str);
+          return true;
+        } catch (_) {
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
